@@ -1,6 +1,6 @@
 import os
 
-from modis import helptools
+from modis.tools import help
 
 
 def get_help_datapacks(module_name, server_prefix):
@@ -15,18 +15,12 @@ def get_help_datapacks(module_name, server_prefix):
         datapacks (list): The help datapacks for the module
     """
 
-    _dir = os.path.realpath(
-        os.path.join(os.getcwd(), os.path.dirname(__file__)))
-    module_dir = "{}/../{}".format(_dir, module_name, "_help.json")
-    if os.path.isdir(module_dir):
-        module_help_path = "{}/{}".format(module_dir, "_help.json")
+    datapacks = help.get_md(module_name, server_prefix)
 
-        if os.path.isfile(module_help_path):
-            return helptools.get_help_datapacks(module_help_path, server_prefix)
-        else:
-            return [("Help", "{} does not have a help.json file".format(module_name), False)]
+    if datapacks:
+        return datapacks
     else:
-        return [("Help", "No module found called {}".format(module_name), False)]
+        return [("Help", module_name + "does not have any help data.")]
 
 
 def get_help_commands(server_prefix):
