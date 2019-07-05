@@ -11,8 +11,8 @@ logger = logging.getLogger(__name__)
 
 async def on_command(root, aux, query, msgobj):
     if root == "help":
-        await main.client.send_typing(msgobj.channel)
-        prefix = data.cache["servers"][msgobj.server.id]["prefix"]
+        msgobj.channel.trigger_typing()
+        prefix = data.cache["guilds"][str(msgobj.guild.id)]["prefix"]
 
         if query:
             datapacks = api_help.get_help_datapacks(query, prefix)

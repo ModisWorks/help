@@ -9,7 +9,7 @@ COMMANDS = {
         "level": 0
     }
 }
-DATA_SERVER = {}
+DATA_GUILD = {}
 DATA_GLOBAL = {}
 
 HELP_DATAPACKS = {
